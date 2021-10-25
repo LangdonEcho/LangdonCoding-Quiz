@@ -1,8 +1,8 @@
-const question = Document.querySelector('#question');
-const Answers = Array.from(Document.querySelectorAll('.Answer-text'));
-const progressText = Document.querySelector('#progressText');
-const scoreText = Document.querySelector('#score');
-const progressBarFull = Document.querySelector('#progressBarFull');
+const question = document.querySelector('#question');
+const Answers = Array.from(document.querySelectorAll('.Answer-text'));
+const progressText = document.querySelector('#progressText');
+const scoreText = document.querySelector('#score');
+const progressBarFull = document.querySelector('#progressBarFull');
 
 let currentQuestion = {};
 let acceptingAnswers = true; 
@@ -113,8 +113,8 @@ getNewQuestion = () => {
     acceptingAnswers = true
 }
 
-choices.forEach(choice =>{
-    choice.addEventListener('click', e =>{
+choices.forEach(choices =>{
+    choices.addEventListener('click', e =>{
         if(!acceptingAnswers) return
 
         acceptingAnswers = false
