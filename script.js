@@ -1,5 +1,5 @@
 const question = document.querySelector('#question');
-const Answers = Array.from(document.querySelectorAll('.Answer-text'));
+const choices = Array.from(document.querySelectorAll('.Answer-text'));
 const progressText = document.querySelector('#progressText');
 const scoreText = document.querySelector('#score');
 const progressBarFull = document.querySelector('#progressBarFull');
@@ -78,29 +78,29 @@ let questions = [
     },
 ]
 
-const Score_Board = 100
-const Max_questions = 8
+const SCORE_POINT = 100
+const MAX_QUESTIONS = 8
 
 startGame = () => {
     questionCounter = 0
     score = 0
-    availableQuestion = [...questions] 
-    getNewQuestion()
+    availableQuestions = [...questions] 
+    getNewQuestion( )
 }
 
 getNewQuestion = () => {
-    if(availableQuestions.length === 0 || questionCounter > Max_questions) {
+    if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
         localStorage.setItem('mostRecentScore', score)
 
         return window.location.assign('/end.html')
     }
 
     questionCounter++
-    progressText.innerText = `Question ${questionCounter} of ${Max_questions}`    
-    progressBarFull.style.width = `${(questionCounter/Max_questions) * 100}%`
+    progressText.innerText = `Question ${questionCounter} of ${MAX_QUESTIONS}`    
+    progressBarFull.style.width = `${(questionCounter/MAX_QUESTIONS) * 100}%`
 
-    const questionsIndex = Math.floor(Math.random() * availableQuestion.length)
-    currentQuestion = availableQuestion[questionsIndex]
+    const questionsIndex = Math.floor(Math.random() * availableQuestions.length)
+    currentQuestion = availableQuestions[questionsIndex]
     questions.innerText = currentQuestion.question
 
     choices.forEach(choice => {
@@ -112,9 +112,8 @@ getNewQuestion = () => {
 
     acceptingAnswers = true
 }
-
-choices.forEach(choices =>{
-    choices.addEventListener('click', e =>{
+    choices.forEach(choice => {
+    choice.addEventListener('click', e =>{
         if(!acceptingAnswers) return
 
         acceptingAnswers = false
@@ -133,8 +132,7 @@ choices.forEach(choices =>{
            getNewQuestion
         }, 1000) 
     })
-})
-
+ })
 incrementScore = num => {
     score +=num
     scoreText.innerText = score
