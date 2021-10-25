@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Page</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/game.css">
+</head>
+<body>
+    <div class="container">
+        <div id="game" class="just-center flex column">
+            <div id="hud">
+                <div class="hud-item">
+                    <p id="progressText" class="hud-prefix">
+                        Question
+                    </p>
+                    <div id="progressBar">
+                        <div id="progressBarfull"></div>
+                    </div>
+                </div>
+                <div class="hud-item">
+                    <p class="hud-prefix">
+                        Score
+                    </p>
+                    <h1 class="hud-main-text" id="score">
+                        0
+                    </h1>
+                </div>
+            </div>
+            <h1 id="question">What is the answer to this question</h1>
+            <answer class="Answer-container">
+                <p class="Answer-prefix">A</p>
+    <p class="Answer-text" data-number="1">answer 1</p>
+        </answer>
+        <answer class="Answer-container">
+            <p class="Answer-prefix">A</p>
+            <p class="Answer-text" data-number="2">answer 2</p>
+    </answer>
+    <answer class="Answer-container">
+        <p class="Answer-prefix">A</p>
+    <p class="Answer-text" data-number="3">answer 3</p>
+</answer>
+<answer class="Answer-container">
+    <p class="Answer-prefix">A</p>
+    <p class="Answer-text" data-number="4">answer 4</p>
+</answer>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
