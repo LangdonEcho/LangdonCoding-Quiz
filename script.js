@@ -8,11 +8,11 @@ let currentQuestion = {};
 let acceptingAnswers = true; 
 let score = 0;
 let questionCounter = 0;
-let availableQuestion = [];
+let availableQuestions = [];
 
 let questions = [
     {
-        question: 'How does a WHILE loop start?',
+        question:"How does a WHILE loop start?",
         choice1:"while (i <= 10; i++)",
         choice2:"while i = 1 to 10",
         choice3:"while (i <= 10)",
@@ -21,12 +21,11 @@ let questions = [
     },
     {
         question:"What is the correct way to write a JavaScript array?",
-
         choice1:"var colors = [red, green, blue]",
         choice2:"var colors = red, green, blue",
         choice3:"var colors = (1:red, 2:green, 3:blue)",
         choice4:"var colors = 1 = (red), 2 = (green), 3 = (blues)",
-        answer: 4,
+        answer: 1,
     },
     {
         question:"How to write an IF statement in JavaScript?",
@@ -37,55 +36,40 @@ let questions = [
         answer: 4,
     },
     {
-        question: 'How to write an IF statement in JavaScript?',
-        choice1:"if i = 5",
-        choice2:"if i == 5 then", 
-        choice3:"if i = 5 then",
-        choice4:"if (i == 5)",
-        answer: 4,
+        question: "Which built-in method combines the text of two strings and returns a new string?",
+        choice1:"append()",
+        choice2:"concat()", 
+        choice3:"attach()",
+        choice4:"None of the above",
+        answer: 2,
     },
     {
-        question: 'How to write an IF statement in JavaScript?',
-        choice1:"if i = 5",
-        choice2:"if i == 5 then", 
-        choice3:"if i = 5 then",
-        choice4:"if (i == 5)",
-        answer: 4,
+        question: "Which of the following will write the message “Hello world!” in an alert box?",
+        choice1:"alertBox(Hello World!)",
+        choice2:"alert(“Hello World!”)", 
+        choice3:" msgAlert(“Hello world!”);",
+        choice4:"None of the Above",
+        answer: 2,
     },
     {
-        question: 'How to write an IF statement in JavaScript?',
+        question: "How to write an IF statement in JavaScript?",
         choice1:"if i = 5",
         choice2:"if i == 5 then", 
         choice3:"if i = 5 then",
         choice4:"if (i == 5)",
         answer: 4,
     },
-    {
-        question: 'How to write an IF statement in JavaScript?',
-        choice1:"if i = 5",
-        choice2:"if i == 5 then", 
-        choice3:"if i = 5 then",
-        choice4:"if (i == 5)",
-        answer: 4,
-    },
-    {
-        question: 'How to write an IF statement in JavaScript?',
-        choice1:"if i = 5",
-        choice2:"if i == 5 then", 
-        choice3:"if i = 5 then",
-        choice4:"if (i == 5)",
-        answer: 4,
-    },
+
 ]
 
 const SCORE_POINT = 100
-const MAX_QUESTIONS = 8
+const MAX_QUESTIONS = 6
 
 startGame = () => {
     questionCounter = 0
     score = 0
     availableQuestions = [...questions] 
-    getNewQuestion( )
+    getNewQuestion()
 }
 
 getNewQuestion = () => {
@@ -108,7 +92,7 @@ getNewQuestion = () => {
         choice.innerText = currentQuestion['choice' + number]
     })
 
-    availableQuestion.splice(questionsIndex, 1)
+    availableQuestions.splice(questionsIndex, 1)
 
     acceptingAnswers = true
 }
@@ -124,12 +108,12 @@ getNewQuestion = () => {
         'incorrect'
 
         if (classToApply === 'correct') {
-            incrementScore(Score_Board)
+            incrementScore(SCORE_POINT)
         }
 
         setTimeout(() => {
            selectedChoice.parentElement.classList.remove(classToApply)
-           getNewQuestion
+           getNewQuestion()
         }, 1000) 
     })
  })
