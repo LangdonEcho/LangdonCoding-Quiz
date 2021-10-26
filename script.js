@@ -9,7 +9,7 @@ let acceptingAnswers = true;
 let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
-
+console.log(currentQuestion)
 let questions = [
     {
         question:"How does a WHILE loop start?",
@@ -62,6 +62,19 @@ let questions = [
 
 ]
 
+var sec = 60;
+var time = setInterval(myTimer, 1000);
+
+function myTimer() {
+    document.getElementById('timer').innerHTML = sec + "sec left";
+    sec--;
+    if (sec == -1) {
+        clearInterval(time);
+        alert("Time out!! :(");
+    }
+}
+   
+
 const SCORE_POINT = 100
 const MAX_QUESTIONS = 6
 
@@ -72,6 +85,7 @@ startGame = () => {
     getNewQuestion()
 }
 
+//creating getNewQuestions functions
 getNewQuestion = () => {
     if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
         localStorage.setItem('mostRecentScore', score)
@@ -79,14 +93,17 @@ getNewQuestion = () => {
         return window.location.assign('/end.html')
     }
 
+    //ProgressBar and question number update
     questionCounter++
     progressText.innerText = `Question ${questionCounter} of ${MAX_QUESTIONS}`    
     progressBarFull.style.width = `${(questionCounter/MAX_QUESTIONS) * 100}%`
 
+    //randomizing Questions selection and keeping track of asked Questions
     const questionsIndex = Math.floor(Math.random() * availableQuestions.length)
     currentQuestion = availableQuestions[questionsIndex]
-    questions.innerText = currentQuestion.question
+    question.innerText = currentQuestion.question
 
+    //keeping track of choice selections
     choices.forEach(choice => {
         const number = choice.dataset['number']
         choice.innerText = currentQuestion['choice' + number]
