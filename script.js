@@ -52,14 +52,29 @@ let questions = [
         answer: 2,
     },
     {
-        question: "How to write an IF statement in JavaScript?",
-        choice1:"if i = 5",
-        choice2:"if i == 5 then", 
-        choice3:"if i = 5 then",
-        choice4:"if (i == 5)",
+        question: "Which of the following is an event listener in JavaScript?",
+        choice1:"onclick",
+        choice2:"blur", 
+        choice3:"click",
+        choice4:"click()",
+        answer: 3,
+    },
+    {
+        question: "What is the syntax of a “for” statement in JavaScript?",
+        choice1:" for(increment; condition; initialization)",
+        choice2:" for(initialization, condition, increment)", 
+        choice3:" for(condition; initialization; increment)",
+        choice4:" for(initialization; condition; increment)",
         answer: 4,
     },
-
+    {
+        question: "Determine the result – String(“Hello”) === “Hello”;",
+        choice1:"true",
+        choice2:"false", 
+        choice3:"SyntaxError",
+        choice4:"ReferenceError",
+        answer: 1,
+    },
 ]
 
 // Timer
@@ -77,7 +92,7 @@ function myTimer() {
    
 //fixed amounts
 const SCORE_POINT = 100
-const MAX_QUESTIONS = 6
+const MAX_QUESTIONS = 8
 
    //start function
    startGame = () => {
@@ -117,7 +132,7 @@ getNewQuestion = () => {
 }
    
 choices.forEach(choice => {
-    choice.addEventListener('click', e =>{
+    choice.addEventListener('click', e => {
         if(!acceptingAnswers) return
 
         acceptingAnswers = false
@@ -126,16 +141,20 @@ choices.forEach(choice => {
 
         let classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect'
 
-        if (classToApply === 'correct') {
+        if(classToApply === 'correct') {
             incrementScore(SCORE_POINT)
         }
 
+        selectedChoice.parentElement.classList.add(classToApply)
+
         setTimeout(() => {
-           selectedChoice.parentElement.classList.remove(classToApply)
-           getNewQuestion()
-        }, 1000) 
+            selectedChoice.parentElement.classList.remove(classToApply)
+            getNewQuestion()
+
+        }, 1000)
     })
- })
+})
+
 incrementScore = num => {
     score +=num
     scoreText.innerText = score
