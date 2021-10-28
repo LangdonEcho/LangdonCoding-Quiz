@@ -1,16 +1,19 @@
-const question = document.querySelector('#question');
-const choices = Array.from(document.querySelectorAll('.Answer-text'));
+// targeting id and classes
 const progressText = document.querySelector('#progressText');
 const scoreText = document.querySelector('#score');
 const progressBarFull = document.querySelector('#progressBarFull');
+const choices = Array.from(document.querySelectorAll('.Answer-text'));
+const question = document.querySelector('#question');
 
-let currentQuestion = {};
-let acceptingAnswers = true; 
-let score = 0;
-let questionCounter = 0;
-let availableQuestions = [];
+//adding variables
+var currentQuestion = {};
+var acceptingAnswers = true; 
+var score = 0;
+var questionCounter = 0;
+var availableQuestions = [];
 
-let questions = [
+// creating questions array
+var questions = [
     {
         question:"How does a WHILE loop start?",
         choice1:"while (i <= 10; i++)",
@@ -107,7 +110,7 @@ getNewQuestion = () => {
     if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
         localStorage.setItem('mostRecentScore', score)
 
-        return window.location.assign('/end.html')
+        return window.location.assign('/submit.html')
     }
 
     //ProgressBar and question number update
@@ -138,15 +141,14 @@ choices.forEach(choice => {
         acceptingAnswers = false
         const selectedChoice = e.target
         const selectedAnswer = selectedChoice.dataset['number']
-
+//adding the color to incorrect and correct answers
         let classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect'
-
+// adding points when correct answer is selected 
         if(classToApply === 'correct') {
             incrementScore(SCORE_POINT)
         }
-
         selectedChoice.parentElement.classList.add(classToApply)
-
+// adding time to see if answer was correct or not 
         setTimeout(() => {
             selectedChoice.parentElement.classList.remove(classToApply)
             getNewQuestion()
@@ -154,7 +156,7 @@ choices.forEach(choice => {
         }, 1000)
     })
 })
-
+// score stacks each time answer is correct  
 incrementScore = num => {
     score +=num
     scoreText.innerText = score
