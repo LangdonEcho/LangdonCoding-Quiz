@@ -1,7 +1,7 @@
-// target id 
-const highScoreList = document.querySelector('#highScoresList')
+// target id and declaring variables
+var highScoreList = document.querySelector('#highScoresList')
 
-const highScores = JSON.parse(localStorage.getItem("highScores")) || []
+var highScores = JSON.parse(localStorage.getItem("highScores")) || []
 //creating new array 
 highScoresList.innerHTML = highScores.map(score => {
 //showing name and score joined 

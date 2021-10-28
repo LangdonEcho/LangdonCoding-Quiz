@@ -72,6 +72,10 @@ body {
     width: 0%;
 }
 
+.time{
+text-align: center;
+}
+
 @media screen and (max-width: 768px) {
     .Answer-container{
         min-width: 40rem;

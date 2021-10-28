@@ -1,8 +1,8 @@
 //target ids in Score Html
-const username =document.querySelector('#username')
-const saveScoreBtn = document.querySelector('#saveScoreBtn')
-const finalScore = document.querySelector('#finalScore')
-const mostRecentScore = localStorage.getItem('mostRecentScore')
+var username =document.querySelector('#username')
+var saveScoreBtn = document.querySelector('#saveScoreBtn')
+var finalScore = document.querySelector('#finalScore')
+var mostRecentScore = localStorage.getItem('mostRecentScore')
 //storing score in highscore page
 const highScores = JSON.parse(localStorage.getItem('highScores')) || []
 //saving  the 5

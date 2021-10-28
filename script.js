@@ -1,9 +1,9 @@
-// targeting id and classes
-const progressText = document.querySelector('#progressText');
-const scoreText = document.querySelector('#score');
-const progressBarFull = document.querySelector('#progressBarFull');
-const choices = Array.from(document.querySelectorAll('.Answer-text'));
-const question = document.querySelector('#question');
+//declaring variables and targeting id and classes
+var progressText = document.querySelector('#progressText');
+var scoreText = document.querySelector('#score');
+var progressBarFull = document.querySelector('#progressBarFull');
+var choices = Array.from(document.querySelectorAll('.Answer-text'));
+var question = document.querySelector('#question');
 
 //adding variables
 var currentQuestion = {};
@@ -79,9 +79,30 @@ var questions = [
         answer: 1,
     },
 ]
+//fixed amounts
+const SCORE_POINT = 100
+const MAX_QUESTIONS = 8
+
+//start function
+   startGame = () => {
+    questionCounter = 0
+    score = 0
+    availableQuestions = [...questions] 
+    getNewQuestion()
+}
+
+// Start working code 
+// Declared variables
+var currentTime = document.querySelector("#time");
+// Seconds left is 15 seconds per question:
+var secondsLeft = 76;
+// Holds interval time
+var holdInterval = 0;
+// Holds penalty time
+var penalty = 10;
 
 // Timer
-var sec = 60;
+var sec = 75;
 var time = setInterval(myTimer, 1000);
 
 function myTimer() {
@@ -93,17 +114,8 @@ function myTimer() {
     }
 }
    
-//fixed amounts
-const SCORE_POINT = 100
-const MAX_QUESTIONS = 8
 
-   //start function
-   startGame = () => {
-    questionCounter = 0
-    score = 0
-    availableQuestions = [...questions] 
-    getNewQuestion()
-}
+ 
 
 //creating getNewQuestions functions
 getNewQuestion = () => {
@@ -146,9 +158,9 @@ choices.forEach(choice => {
 // adding points when correct answer is selected 
         if(classToApply === 'correct') {
             incrementScore(SCORE_POINT)
-        }
+        } 
         selectedChoice.parentElement.classList.add(classToApply)
-// adding time to see if answer was correct or not 
+// adding time between questions to see if answer was correct or not 
         setTimeout(() => {
             selectedChoice.parentElement.classList.remove(classToApply)
             getNewQuestion()
