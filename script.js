@@ -9,7 +9,7 @@ let acceptingAnswers = true;
 let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
-console.log(currentQuestion)
+
 let questions = [
     {
         question:"How does a WHILE loop start?",
@@ -62,6 +62,7 @@ let questions = [
 
 ]
 
+// Timer
 var sec = 60;
 var time = setInterval(myTimer, 1000);
 
@@ -74,11 +75,12 @@ function myTimer() {
     }
 }
    
-
+//fixed amounts
 const SCORE_POINT = 100
 const MAX_QUESTIONS = 6
 
-startGame = () => {
+   //start function
+   startGame = () => {
     questionCounter = 0
     score = 0
     availableQuestions = [...questions] 
@@ -113,7 +115,8 @@ getNewQuestion = () => {
 
     acceptingAnswers = true
 }
-    choices.forEach(choice => {
+   
+choices.forEach(choice => {
     choice.addEventListener('click', e =>{
         if(!acceptingAnswers) return
 
@@ -121,8 +124,7 @@ getNewQuestion = () => {
         const selectedChoice = e.target
         const selectedAnswer = selectedChoice.dataset['number']
 
-        let classToApply = selectedAnswer == currentQuestion.answer ? 'correct' :
-        'incorrect'
+        let classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect'
 
         if (classToApply === 'correct') {
             incrementScore(SCORE_POINT)
