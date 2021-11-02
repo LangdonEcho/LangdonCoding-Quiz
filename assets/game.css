@@ -12,14 +12,14 @@ body {
     margin-bottom: 0.8rem;
     width: 100%;
     border-radius: 4px;
-    background: rgb(18, 93, 255);
+    background: rgb(238, 121, 12);
     font-size: 3rem;
     min-width: 80rem;
 }
 
 .Answer-container:hover{
     cursor: pointer;
-    box-shadow: 0 0.4rem 1.4rem 0 rgba(68, 28, 243, 0.5);
+    box-shadow: 0 0.4rem 1.4rem 0 rgba(214, 147, 3, 0.5);
     transform: scale(1.02);
     transform: transform 100ms;
 }
@@ -60,7 +60,7 @@ body {
 #progressBar{
     width: 20rem;
     height: 3rem;
-    border:0.2rem solid rgb(41, 232, 111);
+    border:0.2rem solid rgb(232, 165, 41);
     margin-top: 2rem;
     border-radius: 50px;
     overflow: hidden;
@@ -68,7 +68,7 @@ body {
 
 #progressBarFull{
     height: 100%;
-    background: rgb(41, 232, 111);
+    background: rgb(232, 165, 41);
     width: 0%;
 }
 
