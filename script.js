@@ -106,15 +106,9 @@ var timeLeft = 76;
 var holdInterval = 0;
 // Holds penalty time
 var penalty = 10;
-// Creates new element
-var ulCreate = document.createElement("ul");
 
-// Triggers timer on button, shows user a display on the screen
-document.getElementById("startTime").addEventListener("click", startTime);
-
-function timer() {
-  document.getElementById("currentTime").innerHTML = timer();
-  var sec = 75;
+// Timer
+var sec = 75;
 var time = setInterval(myTimer, 1000);
 
 function myTimer() {
@@ -125,21 +119,7 @@ function myTimer() {
         alert("Time out!! :(");
     }
 }
-    // We are checking zero because its originally set to zero
-    if (holdInterval === 0) {
-        holdInterval = setInterval(function () {
-            timeLeft--;
-            currentTime.textContent = "Time: " + secondsLeft;
-
-            if (secondsLeft <= 0) {
-                clearInterval(holdInterval);
-                allDone();
-                currentTime.textContent = "Time's up!";
-            }
-        }, 1000);
-    }
-    render(questionIndex);
- };
+   
 
  
 
