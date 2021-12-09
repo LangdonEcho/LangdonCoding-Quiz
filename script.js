@@ -96,9 +96,8 @@ const MAX_QUESTIONS = 8
 
 // Start working code 
 // Declared variables
-var currentTime = document.querySelector("#currentTime");
-var timer = document.querySelector("#startTime");
-
+var currentTime = document.getElementById("#currentTime");
+var timer = document.getElementById("#startTime");
 
 
 // Seconds left is 15 seconds per question:
@@ -111,7 +110,11 @@ var penalty = 10;
 var ulCreate = document.createElement("ul");
 
 // Triggers timer on button, shows user a display on the screen
-timer.addEventListener("click", function () {
+document.getElementById("playBtn").addEventListener("click", startTime);
+
+function startTime() {
+  document.getElementById("startTime").innerHTML = timer();
+
     // We are checking zero because its originally set to zero
     if (holdInterval === 0) {
         holdInterval = setInterval(function () {
@@ -126,7 +129,7 @@ timer.addEventListener("click", function () {
         }, 1000);
     }
     render(questionIndex);
- });
+ };
 
  
 
