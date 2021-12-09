@@ -101,7 +101,7 @@ var timer = document.getElementById("#startTime");
 
 
 // Seconds left is 15 seconds per question:
-var secondsLeft = 76;
+var timeLeft = 76;
 // Holds interval time
 var holdInterval = 0;
 // Holds penalty time
@@ -112,13 +112,23 @@ var ulCreate = document.createElement("ul");
 // Triggers timer on button, shows user a display on the screen
 document.getElementById("startTime").addEventListener("click", startTime);
 
-function startTime() {
-  document.getElementById("startTime").innerHTML = timer();
+function timer() {
+  document.getElementById("currentTime").innerHTML = timer();
+  var sec = 75;
+var time = setInterval(myTimer, 1000);
 
+function myTimer() {
+    document.getElementById('timer').innerHTML = sec + "sec left";
+    sec--;
+    if (sec == -1) {
+        clearInterval(time);
+        alert("Time out!! :(");
+    }
+}
     // We are checking zero because its originally set to zero
     if (holdInterval === 0) {
         holdInterval = setInterval(function () {
-            secondsLeft--;
+            timeLeft--;
             currentTime.textContent = "Time: " + secondsLeft;
 
             if (secondsLeft <= 0) {
