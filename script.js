@@ -110,7 +110,7 @@ var penalty = 10;
 var ulCreate = document.createElement("ul");
 
 // Triggers timer on button, shows user a display on the screen
-document.getElementById("playBtn").addEventListener("click", startTime);
+document.getElementById("startTime").addEventListener("click", startTime);
 
 function startTime() {
   document.getElementById("startTime").innerHTML = timer();
