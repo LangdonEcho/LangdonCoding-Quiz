@@ -91,29 +91,42 @@ const MAX_QUESTIONS = 8
     getNewQuestion()
 }
 
+   // Declared variables
+
+
 // Start working code 
 // Declared variables
-var currentTime = document.querySelector("#time");
+var currentTime = document.querySelector("#currentTime");
+var timer = document.querySelector("#startTime");
+
+
+
 // Seconds left is 15 seconds per question:
 var secondsLeft = 76;
 // Holds interval time
 var holdInterval = 0;
 // Holds penalty time
 var penalty = 10;
+// Creates new element
+var ulCreate = document.createElement("ul");
 
-// Timer
-var sec = 75;
-var time = setInterval(myTimer, 1000);
+// Triggers timer on button, shows user a display on the screen
+timer.addEventListener("click", function () {
+    // We are checking zero because its originally set to zero
+    if (holdInterval === 0) {
+        holdInterval = setInterval(function () {
+            secondsLeft--;
+            currentTime.textContent = "Time: " + secondsLeft;
 
-function myTimer() {
-    document.getElementById('timer').innerHTML = sec + "sec left";
-    sec--;
-    if (sec == -1) {
-        clearInterval(time);
-        alert("Time out!! :(");
+            if (secondsLeft <= 0) {
+                clearInterval(holdInterval);
+                allDone();
+                currentTime.textContent = "Time's up!";
+            }
+        }, 1000);
     }
-}
-   
+    render(questionIndex);
+ });
 
  
 
