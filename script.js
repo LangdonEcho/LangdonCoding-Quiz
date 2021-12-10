@@ -6,7 +6,7 @@ var timer;
 
 
 // creating questions array
-var questions = [
+var question = [
     {
         question:"How does a WHILE loop start?",
         choice1:"while (i <= 10; i++)",
@@ -88,7 +88,7 @@ function start() {
         }
     }, 1000);
 
-    nex//stop the timer to end the game 
+    //stop the timer to end the game 
     function endGame() {
         clearInterval(timer);
     
@@ -100,7 +100,7 @@ function start() {
         <button onclick="setScore()">Set score!</button>`;
     
         document.getElementById("quizBody").innerHTML = quizContent;
-    }t();
+    };
 }
 
 //store the scores on local storage
@@ -145,6 +145,37 @@ function resetGame() {
         Click to play!   
     </h3>
     <button onclick="start()">Start!</button>`;
+
+    document.getElementById("quizBody").innerHTML = quizContent;
+}
+
+//correct answers add 100 points
+function correct() {
+    score += 100;
+    next();
+}
+
+//loops through the questions 
+function next() {
+    currentQuestion++;
+
+    if (currentQuestion > questions.length - 1) {
+        endGame();
+        return;
+    }
+    var quizContent = "<h2>" + questions[currentQuestion].title + "</h2>"
+
+    for (var buttonLoop = 0; buttonLoop < questions[currentQuestion].choices.length; buttonLoop++) {
+        var buttonCode = "<button onclick=\"[ANS]\">[CHOICE]</button>"; 
+        buttonCode = buttonCode.replace("[CHOICE]", questions[currentQuestion].choices[buttonLoop]);
+        if (questions[currentQuestion].choices[buttonLoop] == questions[currentQuestion].answer) {
+            buttonCode = buttonCode.replace("[ANS]", "correct()");
+        } else {
+            buttonCode = buttonCode.replace("[ANS]", "incorrect()");
+        }
+        quizContent += buttonCode
+    }
+
 
     document.getElementById("quizBody").innerHTML = quizContent;
 }
