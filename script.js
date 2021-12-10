@@ -1,18 +1,8 @@
-//declaring variables and targeting id and classes
-var timer = document.getElementById("timer");
-var timeLeft = document.getElementById("timeLeft");
-var timesUp = document.getElementById("timesUp");
-
-var startDiv = document.getElementById("start");
-var startQuizBtn = document.getElementById("start-quiz-button");
-
-var questionDiv = document.getElementById("questionsDiv");
-var questionTitle = document.getElementById("questionTitle");
-var choice1 = document.getElementById("btn1");
-var choice2 = document.getElementById("btn2");
-var choice3 = document.getElementById("btn3");
-var choice4 = document.getElementById("btn4");
-var answerCheck = document.getElementById("answerCheck");
+//setting the numerical variables for the functions.. scores and timers.. 
+var score = 0;
+var currentQuestion = -1;
+var timeLeft = 0;
+var timer;
 
 
 // creating questions array
@@ -82,17 +72,25 @@ var questions = [
         answer: 1,
     },
 ]
-//fixed amounts
-const SCORE_POINT = 100
-const MAX_QUESTIONS = 8
+//starts the countdown timer once user clicks the 'start' button
+function start() {
 
-//start function
-   startGame = () => {
-    questionCounter = 0
-    score = 0
-    availableQuestions = [...questions] 
-    getNewQuestion()
+    timeLeft = 75;
+    document.getElementById("timeLeft").innerHTML = timeLeft;
+
+    timer = setInterval(function() {
+        timeLeft--;
+        document.getElementById("timeLeft").innerHTML = timeLeft;
+        //proceed to end the game function when timer is below 0 at any time
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            endGame(); 
+        }
+    }, 1000);
+
+    next();
 }
+
 
    // Declared variables
 
