@@ -182,8 +182,7 @@ function next() {
         return;
     }
 
-    var quizContent = "<h2>" + questions[currentQuestion].title + "</h2>"
-
+    var quizContent = "<h2>" + questions[currentQuestion].questions + "</h2>"
     for (var buttonLoop = 0; buttonLoop < questions[currentQuestion].choices.length; buttonLoop++) {
         var buttonCode = "<button onclick=\"[ANS]\">[CHOICE]</button>"; 
         buttonCode = buttonCode.replace("[CHOICE]", questions[currentQuestion].choices[buttonLoop]);
