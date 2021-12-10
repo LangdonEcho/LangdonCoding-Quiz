@@ -1,16 +1,19 @@
 //declaring variables and targeting id and classes
-var progressText = document.querySelector('#progressText');
-var scoreText = document.querySelector('#score');
-var progressBarFull = document.querySelector('#progressBarFull');
-var choices = Array.from(document.querySelectorAll('.Answer-text'));
-var question = document.querySelector('#question');
+var timer = document.getElementById("timer");
+var timeLeft = document.getElementById("timeLeft");
+var timesUp = document.getElementById("timesUp");
 
-//adding variables
-var currentQuestion = {};
-var acceptingAnswers = true; 
-var score = 0;
-var questionCounter = 0;
-var availableQuestions = [];
+var startDiv = document.getElementById("start");
+var startQuizBtn = document.getElementById("start-quiz-button");
+
+var questionDiv = document.getElementById("questionsDiv");
+var questionTitle = document.getElementById("questionTitle");
+var choice1 = document.getElementById("btn1");
+var choice2 = document.getElementById("btn2");
+var choice3 = document.getElementById("btn3");
+var choice4 = document.getElementById("btn4");
+var answerCheck = document.getElementById("answerCheck");
+
 
 // creating questions array
 var questions = [
