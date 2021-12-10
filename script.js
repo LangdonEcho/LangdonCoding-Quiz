@@ -88,97 +88,63 @@ function start() {
         }
     }, 1000);
 
-    next();
+    nex//stop the timer to end the game 
+    function endGame() {
+        clearInterval(timer);
+    
+        var quizContent = `
+        <h2>Game over!</h2>
+        <h3>You got a ` + score +  ` /100!</h3>
+        <h3>That means you got ` + score / 20 +  ` questions correct!</h3>
+        <input type="text" id="name" placeholder="First name"> 
+        <button onclick="setScore()">Set score!</button>`;
+    
+        document.getElementById("quizBody").innerHTML = quizContent;
+    }t();
 }
 
-
-   // Declared variables
-
-
-// Start working code 
-// Declared variables
-var currentTime = document.getElementById("#currentTime");
-var timer = document.getElementById("#startTime");
-
-
-// Seconds left is 15 seconds per question:
-var timeLeft = 76;
-// Holds interval time
-var holdInterval = 0;
-// Holds penalty time
-var penalty = 10;
-
-// Timer
-var sec = 75;
-var time = setInterval(myTimer, 1000);
-
-function myTimer() {
-    document.getElementById('timer').innerHTML = sec + "sec left";
-    sec--;
-    if (sec == -1) {
-        clearInterval(time);
-        alert("Time out!! :(");
-    }
+//store the scores on local storage
+function setScore() {
+    localStorage.setItem("highscore", score);
+    localStorage.setItem("highscoreName",  document.getElementById('name').value);
+    getScore();
 }
-   
-
- 
-
-//creating getNewQuestions functions
-getNewQuestion = () => {
-    if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
-        localStorage.setItem('mostRecentScore', score)
-
-        return window.location.assign('./submit.html')
-    }
-
-    //ProgressBar and question number update
-    questionCounter++
-    progressText.innerText = `Question ${questionCounter} of ${MAX_QUESTIONS}`    
-    progressBarFull.style.width = `${(questionCounter/MAX_QUESTIONS) * 100}%`
-
-    //randomizing Questions selection and keeping track of asked Questions
-    const questionsIndex = Math.floor(Math.random() * availableQuestions.length)
-    currentQuestion = availableQuestions[questionsIndex]
-    question.innerText = currentQuestion.question
-
-    //keeping track of choice selections
-    choices.forEach(choice => {
-        const number = choice.dataset['number']
-        choice.innerText = currentQuestion['choice' + number]
-    })
-
-    availableQuestions.splice(questionsIndex, 1)
-
-    acceptingAnswers = true
-}
-   
-choices.forEach(choice => {
-    choice.addEventListener('click', e => {
-        if(!acceptingAnswers) return
-
-        acceptingAnswers = false
-        const selectedChoice = e.target
-        const selectedAnswer = selectedChoice.dataset['number']
-//adding the color to incorrect and correct answers
-        let classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect'
-// adding points when correct answer is selected 
-        if(classToApply === 'correct') {
-            incrementScore(SCORE_POINT)
-        } 
-        selectedChoice.parentElement.classList.add(classToApply)
-// adding time between questions to see if answer was correct or not 
-        setTimeout(() => {
-            selectedChoice.parentElement.classList.remove(classToApply)
-            getNewQuestion()
-
-        }, 1000)
-    })
-})
-// score stacks each time answer is correct  
-incrementScore = num => {
-    score +=num
-    scoreText.innerText = score
+function getScore() {
+    var quizContent = `
+    <h2>` + localStorage.getItem("highscoreName") + `'s highscore is:</h2>
+    <h1>` + localStorage.getItem("highscore") + `</h1><br> 
+    
+    <button onclick="clearScore()">Clear score!</button><button onclick="resetGame()">Play Again!</button>
+    `;
+     document.getElementById("quizBody").innerHTML = quizContent;
 }
 
-startGame()
+//clear the scorers names in the local storage
+function clearScore() {
+    localStorage.setItem("highscore", "");
+    localStorage.setItem("highscoreName",  "");
+
+    resetGame();
+}
+
+//reset the game and return to the main screen if selected 
+function resetGame() {
+    clearInterval(timer);
+    score = 0;
+    currentQuestion = -1;
+    timeLeft = 0;
+    timer = null;
+
+    document.getElementById("timeLeft").innerHTML = timeLeft;
+
+    var quizContent = `
+    <h1>
+        JavaScript Quiz!
+    </h1>
+    <h3>
+        Click to play!   
+    </h3>
+    <button onclick="start()">Start!</button>`;
+
+    document.getElementById("quizBody").innerHTML = quizContent;
+}
